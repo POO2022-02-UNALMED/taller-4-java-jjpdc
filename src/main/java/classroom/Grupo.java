@@ -57,4 +57,3 @@ public class Persona {
     void cambiarEstudiante(int indice, Persona estudiante) {
         estudiantes[indice] = estudiante;
     }
-}
