@@ -1,59 +1,43 @@
 package classroom;
 
-public class Persona {
+public class Grupo {
 
-    final long cedula;
-    String nombre;
-    static int totalPersonas;
-    
-    static {
-        totalPersonas = 0;
-    }
-    
-    Persona(String nombre){
-    	this.cedula = 1;
-    	this.nombre = nombre;
-    	totalPersonas++;
-    }
+    Persona[] estudiantes;
+    Persona profesor;
+    Asignatura asignatura;
+    final int codigo;
+    String horario;
 
-    Persona(long cedula, String nombre) {
-        this.cedula = cedula;
-        this.nombre = nombre;
-        totalPersonas++;
-    }
-    
-    Persona(String nombre, long cedula) {
-        this.cedula = cedula;
-        this.nombre = nombre;
-        totalPersonas++;
+    Grupo(Persona[] estudiantes, Persona profesor, Asignatura asignatura, int codigo, String horario) {
+        this.estudiantes = estudiantes;
+        this.profesor = profesor;
+        this.asignatura = asignatura;
+        this.codigo = codigo;
+        this.horario = horario;
     }
 
-    Persona(long cedula) {
-        this.cedula = cedula;
-        this.nombre = "";
-        totalPersonas++;
+    Grupo(int cantidadEstudiantes, Persona profesor, Asignatura asignatura, int codigo, String horario) {
+    	this(new Persona[cantidadEstudiantes], profesor, asignatura, codigo, horario);
+        
     }
 
-    Persona() {
-    	this.cedula = 0;
-        this.nombre = "";
-        totalPersonas++;
-    }
-    
-    long getCedula() {
-        return cedula;
+    Grupo(Persona[] estudiantes, Persona profesor, Asignatura asignatura) {
+        this.codigo = 0;
+		this.estudiantes = estudiantes;
+        this.profesor = profesor;
+        this.asignatura = asignatura;
     }
 
-    String getNombre() {
-        return nombre;
+    void cambiarEstudiante(Persona estudianteViejo, Persona estudianteNuevo) {
+        for (int i = 0; i < estudiantes.length; i++) {
+            if (estudiantes[i].getCedula() == estudianteViejo.getCedula()) {
+                estudiantes[i] = estudianteNuevo;
+                break;
+            }
+        }
     }
-
-    void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-}
-
     
     void cambiarEstudiante(int indice, Persona estudiante) {
         estudiantes[indice] = estudiante;
     }
+}
